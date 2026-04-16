@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1776211302307,
+      "tag": "0000_fantastic_major_mapleleaf",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1776231803672,
+      "tag": "0001_complex_victor_mancha",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1776237305961,
+      "tag": "0002_heavy_zeigeist",
+      "breakpoints": true
+    }
+  ]
+}

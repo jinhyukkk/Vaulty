@@ -1,0 +1,17 @@
+node_modules
+.next
+out
+build
+.DS_Store
+*.log
+.env*.local
+next-env.d.ts
+
+# Claude Code harness
+_workspace/
+.claude/
+
+# SQLite DB
+*.db
+*.db-shm
+*.db-wal
