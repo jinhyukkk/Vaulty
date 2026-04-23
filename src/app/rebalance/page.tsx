@@ -42,8 +42,8 @@ export default async function RebalancePage() {
 
   return (
     <>
-      <Header title="리밸런싱" />
-      <section className="flex-1 space-y-6 px-6 py-6">
+      <Header title="리밸런싱" subtitle="REBALANCE" />
+      <section className="flex-1 space-y-3 overflow-auto p-4">
         <TargetEditor initial={initialClass} />
         <InstrumentTargetEditor
           holdings={holdings}

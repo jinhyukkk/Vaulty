@@ -27,30 +27,40 @@ export async function getKpis(): Promise<Kpi[]> {
   const cashRow = allocation.find((a) => a.assetClass === "cash");
   const cashRatio = cashRow?.ratio ?? 0;
 
+  const spark = series.map((p) => p.revenue);
+
   return [
     {
-      title: "총 자산(KRW)",
+      title: "총 자산",
+      subtitle: "TOTAL ASSETS",
       value: krwCompact(total),
       change: `${holdings.length}개 보유 종목`,
       changeType: "neutral",
+      spark,
     },
     {
       title: "미실현 손익",
+      subtitle: "UNREALIZED P&L",
       value: krwCompact(unrealized),
       change: `${signedPct(returnRatio)} 수익률`,
       changeType: unrealized >= 0 ? "positive" : "negative",
+      spark,
     },
     {
       title: "MTD",
+      subtitle: "MONTH-TO-DATE",
       value: signedPct(mtdChange),
       change: "전월 대비",
       changeType: mtdChange >= 0 ? "positive" : "negative",
+      spark: spark.slice(-3),
     },
     {
       title: "YTD",
+      subtitle: "YEAR-TO-DATE",
       value: signedPct(ytdChange),
       change: `현금 비중 ${(cashRatio * 100).toFixed(1)}%`,
       changeType: ytdChange >= 0 ? "positive" : "negative",
+      spark,
     },
   ];
 }

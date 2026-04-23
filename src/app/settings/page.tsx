@@ -27,8 +27,8 @@ export default async function SettingsPage() {
 
   return (
     <>
-      <Header title="설정" />
-      <section className="flex-1 space-y-6 px-6 py-6">
+      <Header title="설정" subtitle="SETTINGS" />
+      <section className="flex-1 space-y-3 overflow-auto p-4">
         <Card className="max-w-3xl">
           <div className="flex items-center justify-between">
             <div>

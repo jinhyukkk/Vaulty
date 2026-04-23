@@ -50,7 +50,7 @@ export function TransactionsTable({
     <Card className="p-0">
       <div className="border-b border-gray-200 px-4 py-3 dark:border-gray-800">
         <h3 className="text-base font-semibold text-gray-900 dark:text-gray-50">
-          거래 내역
+          거래 로그
         </h3>
       </div>
       <div className="overflow-x-auto">

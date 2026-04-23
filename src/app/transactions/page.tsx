@@ -35,8 +35,8 @@ export default async function TransactionsPage() {
 
   return (
     <>
-      <Header title="거래 내역" />
-      <section className="flex-1 space-y-4 px-6 py-6">
+      <Header title="자산 관리" subtitle="ASSET MANAGEMENT" />
+      <section className="flex-1 space-y-4 overflow-auto p-4">
         <div className="flex justify-end gap-2">
           <ImportCsvDialog accounts={accounts} instruments={instruments} />
           <NewTransactionDialog accounts={accounts} instruments={instruments} />

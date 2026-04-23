@@ -8,6 +8,7 @@ export { getKpis } from "@/lib/portfolio/kpi";
 export {
   getAllocation,
   getHoldings,
+  getHoldingsByAccount,
   getTotalValueKrw,
 } from "@/lib/portfolio/holdings";
 export { getValueSeries } from "@/lib/portfolio/timeSeries";

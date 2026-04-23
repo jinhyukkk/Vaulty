@@ -2,64 +2,68 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  RiDashboardLine,
-  RiBriefcase4Line,
-  RiExchangeDollarLine,
-  RiLineChartLine,
-  RiScales3Line,
-  RiSettings3Line,
-} from "@remixicon/react";
-import { cx, focusRing } from "@/lib/utils";
 
 type NavItem = {
-  name: string;
   href: string;
-  icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  path: string;
 };
 
-const navigation: NavItem[] = [
-  { name: "대시보드", href: "/", icon: RiDashboardLine },
-  { name: "보유 현황", href: "/holdings", icon: RiBriefcase4Line },
-  { name: "거래 내역", href: "/transactions", icon: RiExchangeDollarLine },
-  { name: "성과 분석", href: "/analytics", icon: RiLineChartLine },
-  { name: "리밸런싱", href: "/rebalance", icon: RiScales3Line },
-  { name: "설정", href: "/settings", icon: RiSettings3Line },
+const NAV: NavItem[] = [
+  { href: "/", label: "대시", path: "M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" },
+  { href: "/holdings", label: "자산", path: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" },
+  { href: "/transactions", label: "관리", path: "M3 12l4-4 4 4 6-6 4 4" },
+  { href: "/analytics", label: "분석", path: "M3 21V7M9 21V3M15 21v-8M21 21V11" },
+  { href: "/rebalance", label: "리밸", path: "M3 12h6l3-9 4 18 3-9h2" },
+  { href: "/settings", label: "설정", path: "M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden w-60 shrink-0 border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950 md:block">
-      <div className="flex h-16 items-center px-6 text-lg font-semibold text-gray-900 dark:text-gray-50">
-        Vaultly
+    <aside className="hidden w-[68px] shrink-0 flex-col items-center gap-1.5 border-r border-vaulty-line bg-vaulty-surface py-4 md:flex">
+      <div className="mb-3 flex h-[34px] w-[34px] items-center justify-center rounded-vault bg-vaulty-accent font-serif text-[18px] font-semibold text-vaulty-surface">
+        V
       </div>
-      <nav className="px-3 py-2">
-        <ul className="space-y-1">
-          {navigation.map((item) => {
-            const active = pathname === item.href;
-            const Icon = item.icon;
-            return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={cx(
-                    "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium",
-                    active
-                      ? "bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300"
-                      : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900",
-                    focusRing,
-                  )}
-                >
-                  <Icon className="size-4" />
-                  {item.name}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+      {NAV.map((item) => {
+        const active =
+          item.href === "/"
+            ? pathname === "/"
+            : pathname === item.href || pathname.startsWith(item.href + "/");
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            title={item.label}
+            className={`group flex h-[52px] w-[52px] flex-col items-center justify-center gap-0.5 rounded-vault transition-colors ${
+              active
+                ? "bg-vaulty-accentSoft text-vaulty-accent"
+                : "text-vaulty-inkMuted hover:bg-vaulty-surfaceAlt"
+            }`}
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d={item.path} />
+            </svg>
+            <span className="font-mono text-[8px] tracking-[0.5px]">
+              {item.label}
+            </span>
+          </Link>
+        );
+      })}
+      <div className="flex-1" />
+      <div className="mt-2 flex h-9 w-9 items-center justify-center rounded-full bg-vaulty-bronzeSoft font-serif text-[13px] font-semibold text-vaulty-bronze">
+        JK
+      </div>
     </aside>
   );
 }

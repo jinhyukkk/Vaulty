@@ -155,3 +155,25 @@ export const targetInstruments = sqliteTable(
 );
 
 export type TargetInstrument = typeof targetInstruments.$inferSelect;
+
+// 관심 종목 — 보유하지 않고 추적만 하는 종목들
+// instruments 테이블을 참조하므로 사전 등록 필요. 시세 갱신은 자동 포함.
+export const watchlistItems = sqliteTable(
+  "watchlist_items",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    instrumentId: integer("instrument_id")
+      .notNull()
+      .references(() => instruments.id, { onDelete: "cascade" }),
+    createdAt: integer("created_at")
+      .notNull()
+      .default(sql`(unixepoch())`),
+  },
+  (t) => ({
+    instrumentUnique: uniqueIndex("watchlist_instrument_unique").on(
+      t.instrumentId,
+    ),
+  }),
+);
+
+export type WatchlistItem = typeof watchlistItems.$inferSelect;

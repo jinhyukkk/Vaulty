@@ -14,6 +14,20 @@ export type Holding = {
   costBasisKrw: number;
   unrealizedPnlKrw: number;
   returnRatio: number | null; // (현재가/평균단가 - 1)
+  priceHistory?: number[]; // 최근 30일 일별 종가 (거래통화 기준)
+};
+
+export type AccountHoldings = {
+  accountId: number;
+  accountName: string;
+  accountKind: string;
+  currency: string;
+  cashKrw: number;
+  holdings: Holding[];
+  equityKrw: number;
+  pnlKrw: number;
+  pnlRatio: number;
+  totalKrw: number;
 };
 
 export type AllocationRow = {
@@ -25,9 +39,11 @@ export type AllocationRow = {
 
 export type Kpi = {
   title: string;
+  subtitle?: string;
   value: string;
   change: string;
   changeType: "positive" | "negative" | "neutral";
+  spark?: number[];
 };
 
 export type RevenuePoint = { month: string; revenue: number };

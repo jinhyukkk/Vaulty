@@ -1,28 +1,57 @@
-import { Card } from "@/components/ui/Card";
+import { Spark } from "@/components/charts/Spark";
 import { cx } from "@/lib/utils";
 
 type KpiCardProps = {
   title: string;
+  subtitle?: string;
   value: string;
   change: string;
   changeType: "positive" | "negative" | "neutral";
+  spark?: number[];
 };
 
-export function KpiCard({ title, value, change, changeType }: KpiCardProps) {
+export function KpiCard({
+  title,
+  subtitle,
+  value,
+  change,
+  changeType,
+  spark,
+}: KpiCardProps) {
+  const changeColor =
+    changeType === "positive"
+      ? "#2F6B4F"
+      : changeType === "negative"
+        ? "#A83A2C"
+        : "#8C6A3E";
   const changeClass =
     changeType === "positive"
-      ? "text-emerald-600 dark:text-emerald-400"
+      ? "text-vaulty-up"
       : changeType === "negative"
-        ? "text-red-600 dark:text-red-400"
-        : "text-gray-500 dark:text-gray-400";
+        ? "text-vaulty-down"
+        : "text-vaulty-bronze";
 
   return (
-    <Card className="p-4">
-      <p className="text-sm text-gray-500 dark:text-gray-400">{title}</p>
-      <p className="mt-2 text-2xl font-semibold tabular-nums text-gray-900 dark:text-gray-50">
+    <div className="relative overflow-hidden rounded-vault border border-vaulty-line bg-vaulty-surface p-[18px]">
+      <div className="mb-1.5 flex items-baseline justify-between">
+        <div className="font-serif text-[13px] font-medium text-vaulty-ink">
+          {title}
+        </div>
+        {subtitle && (
+          <div className="font-mono text-[9px] tracking-[1.5px] text-vaulty-inkMuted">
+            {subtitle}
+          </div>
+        )}
+      </div>
+      <div className="font-serif text-[26px] font-medium leading-tight tracking-[-0.5px] text-vaulty-ink tabular-nums">
         {value}
-      </p>
-      <p className={cx("mt-1 text-sm font-medium", changeClass)}>{change}</p>
-    </Card>
+      </div>
+      <div className="mt-1.5 flex items-center justify-between">
+        <div className={cx("font-mono text-[10px]", changeClass)}>{change}</div>
+        {spark && spark.length > 1 && (
+          <Spark data={spark} width={64} height={18} color={changeColor} />
+        )}
+      </div>
+    </div>
   );
 }

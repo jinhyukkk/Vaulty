@@ -39,7 +39,7 @@ export function HoldingsTable({ holdings }: { holdings: Holding[] }) {
                   colSpan={8}
                   className="px-4 py-8 text-center text-gray-500 dark:text-gray-400"
                 >
-                  보유 자산이 없습니다. 거래 내역에서 매수 기록을 추가하세요.
+                  보유 자산이 없습니다. 자산 관리에서 매수 기록을 추가하세요.
                 </td>
               </tr>
             ) : (

@@ -7,13 +7,13 @@ type Size = "sm" | "md" | "lg";
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-blue-500 text-white shadow-sm hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-600",
+    "bg-vaulty-accent text-vaulty-surface hover:bg-vaulty-ink",
   secondary:
-    "border border-gray-300 bg-white text-gray-900 shadow-sm hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-50 dark:hover:bg-gray-800",
+    "border border-vaulty-line bg-vaulty-surface text-vaulty-ink hover:bg-vaulty-surfaceAlt",
   ghost:
-    "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800",
+    "text-vaulty-inkSoft hover:bg-vaulty-surfaceAlt",
   destructive:
-    "bg-red-500 text-white shadow-sm hover:bg-red-600 dark:bg-red-500 dark:hover:bg-red-600",
+    "bg-vaulty-down text-vaulty-surface hover:opacity-90",
 };
 
 const sizeClasses: Record<Size, string> = {
@@ -38,7 +38,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         ref={ref}
         className={cx(
-          "inline-flex items-center justify-center rounded-md font-medium transition-colors disabled:pointer-events-none disabled:opacity-50",
+          "inline-flex items-center justify-center rounded-vault font-medium transition-colors disabled:pointer-events-none disabled:opacity-50",
           variantClasses[variant],
           sizeClasses[size],
           focusRing,
